@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa de El Palmar</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h3>Mapa de El Palmar</h3>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+    <script>
+        var map = L.map('map').setView([37.9383, -1.1664], 16);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+        var lugares = {
+            "Centro de Salud de El Palmar": [37.9383, -1.1664],
+            "Centro de Psicología y Psicoterapia El Palmar": [37.9389, -1.1675],
+            "PsicoNess": [37.9395, -1.1652],
+            "Fisioterapia y Masaje Terapéutico Celine Ortiz Sule": [37.9377, -1.1649],
+            "Fisioterapia Encarna Torres": [37.9372, -1.1687],
+            "Clínica de Fisioterapia Nuevo Palmar": [37.9368, -1.1659],
+            "Jardín Centro Social de los Mayores": [37.9398, -1.1671],
+            "Plaza de la Democracia": [37.9401, -1.1662],
+            "Parque deportivo: pista multideporte": [37.9412, -1.1680],
+            "BunkaiFitness": [37.9375, -1.1637],
+            "Cerro del Portazgo": [37.9340, -1.1710]
+        };
+        for (var name in lugares) {
+            var markerOptions = {};
+            if(name === "Centro de Salud de El Palmar"){
+                markerOptions = {title: name, riseOnHover: true};
+                L.marker(lugares[name], markerOptions).addTo(map).bindPopup("<b>"+name+"</b>");
+            } else {
+                markerOptions = {title: name};
+                L.marker(lugares[name], markerOptions).addTo(map).bindPopup(name);
+            }
+        }
+    </script>
+</body>
+</html>
